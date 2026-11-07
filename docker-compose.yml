@@ -1,0 +1,28 @@
+# One command for the reviewer: `docker compose up --build`
+#   API:              http://localhost:3000   (the Android emulator reaches it at http://10.0.2.2:3000)
+#   Sales inbox (UI): http://localhost:8025   (Mailpit catches every email the API sends)
+
+services:
+  api:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Inside Compose the SMTP server is the mailpit service, whatever .env says.
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      EMAIL_TRANSPORT: smtp
+    depends_on:
+      mailpit:
+        condition: service_started
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:v1.33.0
+    ports:
+      - "8025:8025"   # web UI = the sales inbox
+      - "1025:1025"   # SMTP, also usable when running the API with `npm run dev`
+    restart: unless-stopped
