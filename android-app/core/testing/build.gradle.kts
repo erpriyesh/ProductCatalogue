@@ -1,0 +1,9 @@
+plugins {
+    alias(libs.plugins.catalogue.jvm.library)
+}
+
+dependencies {
+    api(project(":core:model"))
+    api(libs.junit)
+    api(libs.kotlinx.coroutines.test)
+}

@@ -1,0 +1,5 @@
+# Normalise line endings so scripts work for reviewers on macOS/Linux as well as Windows.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.jar binary
+*.png binary
