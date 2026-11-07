@@ -1,0 +1,27 @@
+# Secrets and local config
+.env
+*.env.local
+android-app/local.properties
+*.jks
+*.keystore
+
+# Node
+node_modules/
+backend/dist/
+coverage/
+*.log
+
+# Android / Gradle
+.gradle/
+build/
+.kotlin/
+captures/
+*.apk
+*.aab
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
